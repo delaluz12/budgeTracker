@@ -1,22 +1,23 @@
-
+// declare db global variable
 let db;
 
-//create new db req for budgetDB database
-const request = window.indexedDB.open("budgetDB", newVersion(0) );
+//create new client side db req for budgetDB database for offline functionality if connection is lost or unavailable
+const request = window.indexedDB.open("budgetDB", newVersion(0));
 
 
 // returns a new version incase of changes to onupgradeneeded
-function newVersion (current){
-    return parseInt(current +1);
+function newVersion(current) {
+    return parseInt(current + 1);
 };
 
 request.onupgradeneeded = function (event) {
-    // create object store called "BudgetStore" and set autoIncrement to true
-    // store indexedDB obj in variable
-    db = event.target.result;
     
+    // store indexedDB obj in global variable from line 2
+    db = event.target.result;
+
     // check to see if there are any objStores in the budgetDB if not then create objStore
     if (db.objectStoreNames.length === 0) {
+        // create object store called "BudgetStore" and set autoIncrement to true
         db.createObjectStore("budgetStore", { autoIncrement: true });
     };
 
@@ -76,10 +77,20 @@ function checkDatabase() {
                 .then((response) => response.json())
                 .then((res) => {
                     // returns array of obj that were added---from line 70
+                    // if it returns something, we want to clear out our indexedDB of the objs that were just sent to online DB after reconnecting to connection/internet
                     console.log(res)
-                    // if successful, open a transaction on your pending db
-                    // access your pending object store
-                    // clear all items in your store
+                    // if response returns something i.e it is not empty we need to clear it
+                    if (res !== 0) {
+                        // if successful, open a transaction on your pending db
+                        transaction = db.transaction(['budgetStore'], 'readwrite');
+                        // access your pending object store == set current store to a variable
+                        const currentStore = transaction.objectStore('budgetStore');
+                        // clear all items in your store
+                        currentStore.clear();
+                        console.log("Store cleared 🧹")
+                    }
+                    
+                    
                 });
         }
     };
