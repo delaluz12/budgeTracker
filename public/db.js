@@ -28,10 +28,10 @@ request.onupgradeneeded = function (event) {
 // on success set db to the target result if online then check the indexedDB 
 request.onsuccess = function (event) {
     db = event.target.result;
-    console.log(db);
+    // console.log(db);
 
     if (navigator.onLine) {
-        console.log("backend online~~~~")
+        console.log("~~~~backend online~~~~")
         checkDatabase();
     }
 };
