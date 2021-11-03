@@ -1,6 +1,17 @@
-const FILES_TO_CACHE = [];
+const FILES_TO_CACHE = [
+    "/",
+    "/index.html",
+    "/db.js",
+    "/manifest.webmanifest.json",
+    "/styles.css",
+    "/index.js",
+    "/icons/icon-144x144.png",
+    "/icons/icon-384x384.png"
 
-const CACHE_NAME = "static-cache-v2";
+
+];
+
+const CACHE_NAME = "static-cache-v1";
 const DATA_CACHE_NAME = "data-cache-v1";  // api end point cache storage
 
 // install
