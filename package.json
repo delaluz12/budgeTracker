@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run build && node server.js",
-    "lite-server": "lite-server",
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p",
+    "start:prod": "npm run build && node server.js",
     "watch": "concurrently \"nodemon server.js --ignore client\" \"webpack --watch\"",
     "build": "webpack",
     "start-webpack": "webpack --watch"
