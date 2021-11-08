@@ -11,10 +11,10 @@
   
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
 
   <!-- link to manifest -->
-  <link rel="manifest" href="./manifest.webmanifest.json">
+  <link rel="manifest" href="./dist/manifest.json">
 
   <title>BudgeTracker</title>
 </head>
@@ -48,8 +48,8 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="index.js"></script>
-  <script src="db.js"></script>
+  <script src="./dist/index.bundle.js"></script>
+  <script src="./dist/indb.bundle.js"></script>
   <!-- service worker script for offline functionality --- PWA -->
   <script>
     if ("serviceWorker" in navigator) {
